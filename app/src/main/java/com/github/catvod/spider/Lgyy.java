@@ -424,7 +424,9 @@ public class Lgyy extends Spider {
                     if (playerConfig.has(player.getString("from")))
                     {
                         JSONObject pCfg = playerConfig.getJSONObject(player.getString("from"));
-                        String jxurl = "https://player.tjomet.com/lgyy/dplayer.php?url=" + player.getString("url");
+                        String from= player.getString("from");
+                        if (from.equals("duoduozy"))from="dplayer";
+                        String jxurl = "https://www.lgyy.cc/static/player/"+from+".php?url=" + player.getString("url");
                         Document doc = Jsoup.parse(new URL(jxurl).openStream(), "utf-8",OkHttpUtil.string(jxurl, getHeaders(jxurl)));
                         Elements script = doc.select("body>script[type=text/javascript]");
                         for (int j = 0; j < script.size(); j++)
